@@ -25,7 +25,7 @@ def import_youtube_page
 
   puts 'Downloading youtube page...'
   page_url = ARGV[0] || 'http://www.youtube.com/watch?v=Gq76bcxM_gI'
-  system("curl -A #{USER_AGENT} -D test/header.txt -c test/cookie.txt -o test/youtube.html #{page_url}")
+  system("curl", "-A", USER_AGENT, "-D", "test/header.txt", "-c", "test/cookie.txt", "-o", "test/youtube.html", page_url)
   puts 'Written to youtube.html!'
   File.read('test/youtube.html')
 end
@@ -79,4 +79,4 @@ end
 target = normal_fmts[1]['download_url']
 puts target
 system("curl", "-A", USER_AGENT, "-b", "test/cookie.txt", "-o", "test/youtube1.mp4", target)
-# system("wget", "-Ncq", "-e", "convert-links=off", "--load-cookies", "/dev/null", "--tries=200", "--timeout=20", "--no-check-certificate", "-O", "test/youtube2.mp4", target);
+system("wget", "-Ncq", "-e", "convert-links=off", "--load-cookies", "/dev/null", "--tries=200", "--timeout=20", "--no-check-certificate", "-O", "test/youtube2.mp4", target);
